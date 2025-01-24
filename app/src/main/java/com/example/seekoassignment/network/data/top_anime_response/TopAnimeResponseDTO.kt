@@ -1,4 +1,4 @@
-package com.example.seekhoassignment.data.model.top_anime_response
+package com.example.seekoassignment.network.data.top_anime_response
 
 import com.google.gson.annotations.SerializedName
 

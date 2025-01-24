@@ -15,13 +15,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
     @Singleton
     @Provides
-    fun ProvidesAnimeApi(): ApiServices {
-        return Retrofit.Builder().baseUrl(BASE_URL)
-            .client(OkHttpClientHelper().getOkHttpClient())
+    fun provideAnimeApi(): ApiServices {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(OkHttpClientHelper().getOkHttpClient())  // Ensure OkHttpClient is setup correctly
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create()).build()
+            .addConverterFactory(GsonConverterFactory.create()) // Only use GsonConverterFactory for JSON
+            .build()
             .create(ApiServices::class.java)
     }
-    }
+}
