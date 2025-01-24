@@ -1,6 +1,5 @@
 package com.example.seekoassignment.navigation
-
-
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -13,7 +12,7 @@ import androidx.navigation.navigation
 import com.example.seekoassignment.mainflow.home.animeDetails.ui.AnimeDetailsScreen
 import com.example.seekoassignment.mainflow.home.animeDetails.util.viewmodel.AnimeDetailsViewModel
 import com.example.seekoassignment.mainflow.home.animeList.ui.screen.AnimeListScreen
-import com.example.seekoassignment.mainflow.home.animeList.ui.state.AnimeScreenEvents
+import com.example.seekoassignment.mainflow.home.animeList.ui.events.AnimeScreenEvents
 import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeListViewModel
 
 
@@ -40,7 +39,11 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController){
         ) {backStackEntry->
             val animeId = backStackEntry.arguments?.getInt("animeId") ?: -1
             val viewModel : AnimeDetailsViewModel = hiltViewModel()
-            AnimeDetailsScreen(viewModel  ,animeId)
+            LaunchedEffect(Unit) {
+                viewModel.fetchAnimeDetails(animeId)
+            }
+            val detailsState by viewModel.animeDetailsState.collectAsState()
+            AnimeDetailsScreen(detailsState)
         }
     }
 }

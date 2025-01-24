@@ -12,14 +12,6 @@ interface ApiServices{
     @GET("v4/top/anime")
     suspend fun getTopAnime(): Response<TopAnimeResponseDTO>
 
-//    @GET("v4/top/anime")
-//    suspend fun getTopAnime(
-//        @Query("page") page: Int,
-//        @Query("page_size") pageSize: Int
-//    ): Response<TopAnimeResponseDTO>
-
-
-
     @GET("v4/anime/{anime_id}")
     suspend fun getAnimeDetails(
         @Path("anime_id") animeId: Int

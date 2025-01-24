@@ -28,7 +28,6 @@ import coil.compose.rememberAsyncImagePainter
  * rendered onscreen.
  */
 
-//TODO Resource issue
 @Composable
 fun AppNetworkImage(
     modifier: Modifier = Modifier,
@@ -40,30 +39,21 @@ fun AppNetworkImage(
     alpha: Float = 1f
 ) {
 
-    // This variable states if the painter is loading from the URL or is already loaded
     val isLoading = remember { mutableStateOf(true) }
 
-    // This is the AsyncPainterImage
     val painter = rememberAsyncImagePainter(
         model = model,
         onError = {
-
-            // Loading state is turned back to false
             isLoading.value = false
         },
         onSuccess = {
-
-            // Loading state is turned back to false
             isLoading.value = false
         },
         onLoading = {
-
-            // Loading State is turned to true since the loading is started
             isLoading.value = true
         },
     )
 
-    // This is the Fetched image which will be shown when the Image is fetched from the Server
     Image(
         painter = painter,
         contentDescription = contentDescription,

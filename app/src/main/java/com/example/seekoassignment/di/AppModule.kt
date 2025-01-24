@@ -1,5 +1,7 @@
 package com.example.seekoassignment.di
 
+import com.example.seekoassignment.mainflow.home.animeDetails.util.repository.AnimeDetailRepository
+import com.example.seekoassignment.mainflow.home.animeDetails.util.repository.AnimeDetailRepositoryImpl
 import com.example.seekoassignment.mainflow.home.animeList.util.reposiotry.AnimeListRepository
 import com.example.seekoassignment.mainflow.home.animeList.util.reposiotry.AnimeListRepositoryImpl
 import com.example.seekoassignment.network.ApiServices
@@ -23,9 +25,9 @@ object AppModule {
     fun provideAnimeApi(): ApiServices {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(OkHttpClientHelper().getOkHttpClient())  // Ensure OkHttpClient is setup correctly
+            .client(OkHttpClientHelper().getOkHttpClient())
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create()) // Only use GsonConverterFactory for JSON
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiServices::class.java)
     }
@@ -35,5 +37,11 @@ object AppModule {
     @Provides
     fun provideAnimeRepository(apiServices: ApiServices): AnimeListRepository {
         return AnimeListRepositoryImpl(apiServices)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAnimeDetailRepository(apiServices: ApiServices): AnimeDetailRepository {
+        return AnimeDetailRepositoryImpl(apiServices)
     }
 }

@@ -14,10 +14,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import com.example.seekoassignment.mainflow.home.animeList.ui.components.AnimeItem
-import com.example.seekoassignment.mainflow.home.animeList.ui.state.AnimeScreenEvents
-import com.example.seekoassignment.navigation.HomeScreens
+import com.example.seekoassignment.mainflow.home.animeList.ui.events.AnimeScreenEvents
 import com.example.seekoassignment.network.ApiResult
 import com.example.seekoassignment.network.data.top_anime_response.TopAnimeResponseDTO
 
