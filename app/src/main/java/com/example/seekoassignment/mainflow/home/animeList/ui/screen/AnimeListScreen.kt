@@ -1,5 +1,6 @@
 package com.example.seekoassignment.mainflow.home.animeList.ui.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import com.example.seekoassignment.mainflow.home.animeList.ui.components.AnimeIt
 import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeListViewModel
 import com.example.seekoassignment.network.ApiResult
 
+@SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AnimeListScreen(viewmodel : AnimeListViewModel){

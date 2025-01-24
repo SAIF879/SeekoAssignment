@@ -90,6 +90,8 @@ dependencies {
     //coil
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.1")
+
     //navgation
     implementation(libs.androidx.navigation.compose)
     //room

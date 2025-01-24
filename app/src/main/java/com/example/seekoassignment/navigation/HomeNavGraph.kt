@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.seekoassignment.mainflow.home.animeDetails.ui.AnimeDetailsScreen
+import com.example.seekoassignment.mainflow.home.animeDetails.util.viewmodel.AnimeDetailsViewModel
 import com.example.seekoassignment.mainflow.home.animeList.ui.screen.AnimeListScreen
 import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeListViewModel
 
@@ -13,7 +14,7 @@ import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeL
 fun NavGraphBuilder.homeNavGraph(){
     navigation(
         route = NavGraph.HOME,
-        startDestination = HomeScreens.AnimeListScreen.route
+        startDestination = HomeScreens.AnimeDetailsScreen.route
     ){
 
         composable(route = HomeScreens.AnimeListScreen.route) {
@@ -21,7 +22,8 @@ fun NavGraphBuilder.homeNavGraph(){
             AnimeListScreen(viewmodel =viewModel )
         }
         composable(route = HomeScreens.AnimeDetailsScreen.route) {
-            AnimeDetailsScreen()
+            val viewModel : AnimeDetailsViewModel = hiltViewModel()
+            AnimeDetailsScreen(viewModel)
         }
     }
 }
