@@ -12,7 +12,7 @@ interface ApiServices{
     suspend fun getTopAnime(): Response<TopAnimeResponseDTO>
 
 
-    @GET("anime/{anime_id}")
+    @GET("v4/anime/{anime_id}")
     suspend fun getAnimeDetails(
         @Path("anime_id") animeId: Int
     ): Response<AnimeDetailResponseDTO>

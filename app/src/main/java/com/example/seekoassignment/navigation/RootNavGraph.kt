@@ -17,6 +17,6 @@ fun RootNavGraph(navController : NavHostController){
         route = NavGraph.ROOT,
         startDestination = NavGraph.SPLASH){
         splashNavGraph(navController)
-        homeNavGraph()
+        homeNavGraph(navController =  navController)
     }
 }

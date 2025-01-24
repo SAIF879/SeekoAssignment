@@ -15,21 +15,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.seekoassignment.mainflow.home.animeDetails.ui.components.YouTubeVideoPlayer
 import com.example.seekoassignment.mainflow.home.animeDetails.util.viewmodel.AnimeDetailsViewModel
 import com.example.seekoassignment.mainflow.home.animeList.ui.components.AppNetworkImage
 import com.example.seekoassignment.network.ApiResult
 
 @Composable
-fun AnimeDetailsScreen(viewModel: AnimeDetailsViewModel){
+fun AnimeDetailsScreen(viewModel: AnimeDetailsViewModel, animeId: Int){
     val events by viewModel.animeDetailsState.collectAsState()
-    
+    LaunchedEffect(Unit) {
+        viewModel.fetchAnimeDetails(animeId)
+    }
+
     when(events){
         is ApiResult.Error -> {
             Box(
@@ -37,7 +42,7 @@ fun AnimeDetailsScreen(viewModel: AnimeDetailsViewModel){
                     .fillMaxSize()
                     .padding(10.dp), contentAlignment = Alignment.Center
             ) {
-
+                Text(text = "Error: ${events.message}")
             }
         }
         ApiResult.Loading -> {

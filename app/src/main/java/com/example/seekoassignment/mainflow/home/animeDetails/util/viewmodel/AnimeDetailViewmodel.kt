@@ -15,14 +15,12 @@ import javax.inject.Inject
 @HiltViewModel
 class AnimeDetailsViewModel @Inject constructor(private val getAnimeDetailsUseCase: GetAnimeDetailsUseCase) : ViewModel() {
 
-    init {
-        fetchAnimeDetails(1)
-    }
+
 
     private val _animeDetailsState = MutableStateFlow<ApiResult<AnimeDetailResponseDTO>>(ApiResult.Loading)
     val animeDetailsState: StateFlow<ApiResult<AnimeDetailResponseDTO>> = _animeDetailsState
 
-   private fun fetchAnimeDetails(animeId: Int) {
+    fun fetchAnimeDetails(animeId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             getAnimeDetailsUseCase(animeId).collect { result ->
                 _animeDetailsState.value = result

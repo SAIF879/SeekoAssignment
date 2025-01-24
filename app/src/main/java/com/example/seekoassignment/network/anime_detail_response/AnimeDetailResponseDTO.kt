@@ -206,7 +206,6 @@ data class Data(
     @SerializedName("licensors") var licensors: ArrayList<Licensors> = arrayListOf(),
     @SerializedName("studios") var studios: ArrayList<Studios> = arrayListOf(),
     @SerializedName("genres") var genres: ArrayList<Genres> = arrayListOf(),
-//    @SerializedName("explicit_genres" ) var explicitGenres : ArrayList<String>       = arrayListOf(),
     @SerializedName("themes") var themes: ArrayList<Themes> = arrayListOf(),
     @SerializedName("demographics") var demographics: ArrayList<Demographics> = arrayListOf()
 
