@@ -90,7 +90,13 @@ dependencies {
     //coil
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+
+    //video player
     implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.1")
+
+    //paging 3
+    implementation("androidx.paging:paging-runtime:3.3.5")
+    implementation("androidx.paging:paging-compose:3.3.5")
 
     //navgation
     implementation(libs.androidx.navigation.compose)

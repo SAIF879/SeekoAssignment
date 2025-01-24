@@ -5,11 +5,19 @@ import com.example.seekoassignment.network.data.top_anime_response.TopAnimeRespo
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiServices{
 
     @GET("v4/top/anime")
     suspend fun getTopAnime(): Response<TopAnimeResponseDTO>
+
+//    @GET("v4/top/anime")
+//    suspend fun getTopAnime(
+//        @Query("page") page: Int,
+//        @Query("page_size") pageSize: Int
+//    ): Response<TopAnimeResponseDTO>
+
 
 
     @GET("v4/anime/{anime_id}")

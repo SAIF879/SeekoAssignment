@@ -1,6 +1,8 @@
 package com.example.seekoassignment.navigation
 
 
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -11,6 +13,7 @@ import androidx.navigation.navigation
 import com.example.seekoassignment.mainflow.home.animeDetails.ui.AnimeDetailsScreen
 import com.example.seekoassignment.mainflow.home.animeDetails.util.viewmodel.AnimeDetailsViewModel
 import com.example.seekoassignment.mainflow.home.animeList.ui.screen.AnimeListScreen
+import com.example.seekoassignment.mainflow.home.animeList.ui.state.AnimeScreenEvents
 import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeListViewModel
 
 
@@ -22,7 +25,15 @@ fun NavGraphBuilder.homeNavGraph(navController: NavController){
 
         composable(route = HomeScreens.AnimeListScreen.route) {
             val viewModel : AnimeListViewModel = hiltViewModel()
-            AnimeListScreen(viewmodel =viewModel  , navController =navController )
+            val events by viewModel.topAnimeState.collectAsState()
+            AnimeListScreen( list = events ){
+                when(it){
+                    is AnimeScreenEvents.OnNavigate -> {
+                        navController.navigate(HomeScreens.AnimeDetailsScreen.route + "/${it.id}")
+                    }
+                }
+
+            }
         }
         composable(route = HomeScreens.AnimeDetailsScreen.route+"/{animeId}",
                 arguments = listOf(navArgument("animeId") { type = NavType.IntType })

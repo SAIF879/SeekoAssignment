@@ -1,5 +1,7 @@
 package com.example.seekoassignment.di
 
+import com.example.seekoassignment.mainflow.home.animeList.util.reposiotry.AnimeListRepository
+import com.example.seekoassignment.mainflow.home.animeList.util.reposiotry.AnimeListRepositoryImpl
 import com.example.seekoassignment.network.ApiServices
 import com.example.seekoassignment.network.OkHttpClientHelper
 import com.example.seekoassignment.util.others.Constants.BASE_URL
@@ -26,5 +28,12 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create()) // Only use GsonConverterFactory for JSON
             .build()
             .create(ApiServices::class.java)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideAnimeRepository(apiServices: ApiServices): AnimeListRepository {
+        return AnimeListRepositoryImpl(apiServices)
     }
 }

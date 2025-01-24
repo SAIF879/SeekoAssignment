@@ -12,21 +12,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.seekoassignment.mainflow.home.animeList.ui.components.AnimeItem
-import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeListViewModel
+import com.example.seekoassignment.mainflow.home.animeList.ui.state.AnimeScreenEvents
 import com.example.seekoassignment.navigation.HomeScreens
 import com.example.seekoassignment.network.ApiResult
+import com.example.seekoassignment.network.data.top_anime_response.TopAnimeResponseDTO
 
 @SuppressLint("SuspiciousIndentation")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AnimeListScreen(viewmodel : AnimeListViewModel , navController: NavController){
-    val events by viewmodel.topAnimeState.collectAsState()
+fun AnimeListScreen( list: ApiResult<TopAnimeResponseDTO> , animeScreenEvents: (AnimeScreenEvents)->Unit){
 
         Scaffold(
             topBar = {
@@ -35,7 +33,7 @@ fun AnimeListScreen(viewmodel : AnimeListViewModel , navController: NavControlle
                 )
             },
             content = { paddingValues ->
-                when(events) {
+                when(list) {
                     is ApiResult.Loading -> {
                         Box(
                             modifier = Modifier
@@ -51,15 +49,15 @@ fun AnimeListScreen(viewmodel : AnimeListViewModel , navController: NavControlle
                                 .fillMaxSize()
                                 .padding(paddingValues), contentAlignment = Alignment.Center
                         ) {
-                            Text(text = "Error: ${events.message}")
+                            Text(text = "Error: ${list.message}")
                         }
                     }
                     is ApiResult.Success -> {
                         LazyColumn(modifier = Modifier.padding(paddingValues)) {
-                            events.data?.let {
-                                items(it.data) { anime ->
+                            list.data?.let {
+                                items(items = it.data) { anime ->
                                   AnimeItem(anime = anime) {
-                                      navController.navigate(HomeScreens.AnimeDetailsScreen.route + "/${anime.malId}")
+                                      animeScreenEvents.invoke(AnimeScreenEvents.OnNavigate(anime.malId))
                                   }
                                 }
                             }

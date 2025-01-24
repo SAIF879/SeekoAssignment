@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AnimeRepositoryImpl @Inject constructor(private val animeService: ApiServices)
+class AnimeListRepositoryImpl @Inject constructor(private val animeService: ApiServices)
     : AnimeListRepository {
 
     override suspend fun getTopAnime(): Flow<ApiResult<TopAnimeResponseDTO>> = flow {
