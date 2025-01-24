@@ -1,4 +1,4 @@
-# AnimeExplorer 📺  
+# Seekho Assigment  📺  
 A sleek and modern Android application that lets users browse and explore popular anime series, view detailed information, and watch trailers. Built with Kotlin, Jetpack Compose, and Clean Architecture principles for a scalable and maintainable codebase.
 
 ---
