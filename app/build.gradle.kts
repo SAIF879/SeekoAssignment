@@ -87,6 +87,9 @@ dependencies {
     debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation ("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 
+    //coil
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
     //navgation
     implementation(libs.androidx.navigation.compose)
     //room

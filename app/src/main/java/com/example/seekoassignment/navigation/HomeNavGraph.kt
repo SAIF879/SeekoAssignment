@@ -6,7 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.seekoassignment.mainflow.home.animeDetails.ui.AnimeDetailsScreen
-import com.example.seekoassignment.mainflow.home.animeList.ui.AnimeListScreen
+import com.example.seekoassignment.mainflow.home.animeList.ui.screen.AnimeListScreen
 import com.example.seekoassignment.mainflow.home.animeList.util.viewmodel.AnimeListViewModel
 
 
